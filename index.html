@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body class="body">
+    <div class="wrapper">
+        <header class="header">
+    <div class="header__container container">
+
+        <div class="header__wrap">
+            <a href="" class="header__logo logo">
+                <img src="img/logo.png" alt="" class="logo__img">
+            </a>
+        </div>
+
+    </div>
+
+</header>
+        <main class="main">
+
+
+
+
+            <div class="filter">
+    <div class="filter__container container">
+        <div class="filter__wrap">
+            <h1 class="filter__title title">Микрозаймы</h1>
+
+
+
+
+            <div class="filter__blcok" id="filter">
+
+
+
+
+                <div class="filter__selector ">
+                    <input class="inputNumber filter__field" id="num1" min="0" max="100000" type="number" value="1" />
+                    <input class="inputRange filter__range" step="500" type="range" min="0" max="100000" value="1" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <div class="company">
+    <div class="company__container container">
+        <div class="company__wrap">
+
+
+
+            <div class="banks" id="company">
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $('.inputRange, .inputNumber').on('input', function() {
+        $(this).siblings('.inputRange, .inputNumber').val(this.value);
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>
+    const filters = document.querySelector('#filter');
+    filters.addEventListener('input', filterGoods);
+
+    function filterGoods() {
+        const
+            priceMin = document.querySelector('.inputRange').value;
+
+
+
+
+
+        outputGoods(DATA.filter(n => (
+            (!priceMin || priceMin <= n.min)
+        )));
+    }
+
+    function outputGoods(goods) {
+        document.getElementById('company').innerHTML = goods.map(n => `
+
+
+    <div class="banks__item banks-item">
+        <div class="banks-item__top">
+            <img class="banks-item__image" src="${n.image}">
+            <div class="banks-item__loan">${n.loan}</div>
+        </div>
+        <div class="banks-item__bottom">
+            <p class="banks-item__price">${n.min + " ₽"}  -  ${n.max}</p>
+
+            <div class="banks-item__bet"> <span>Ставка:</span> ${n.bet} </div>
+            <div class="banks-item__time"><span>Срок:</span>  ${n.time} </div>
+
+            <a href="#" class="btn" ">
+                <span>Купить</span>
+            </a>
+            <div class="banks-item__reg"> ${n.reg} </div>
+        </div>
+    </div>
+  `).join('');
+    }
+
+    const DATA = [
+
+        {
+            "image": "img/credit7.svg",
+            "loan": "Займ 0% для новых клиентов",
+            "min": 1000,
+            "max": 30000,
+
+            "bet": "от 0%",
+            "time": "от 7 до 30 дн.",
+            "reg": "Рег. № 1903475009492",
+
+
+
+
+        },
+
+        {
+            "image": "img/oneckickmoney.svg",
+            "loan": "Онлайн",
+            "min": 500,
+            "max": 30000,
+            "bet": "от 1%",
+            "time": "от 7 до 60 дн.",
+            "reg": "Рег. № 001503760007126",
+
+
+
+
+        },
+
+        {
+            "image": "img/websaim.svg",
+            "loan": "Онлайн для новых клиентов",
+            "min": 1500,
+            "max": 30000,
+            "bet": "от 0%",
+            "time": "от 1 до 30 дн.",
+            "reg": "Рег. № 1903550009325",
+
+
+
+
+        },
+
+        {
+            "image": "img/nadodeneg.svg",
+            "loan": "Займ 0% для новых клиентов",
+            "min": 1000,
+            "max": 30000,
+            "bet": "от 0%",
+            "time": "от 7 до 30 дн.",
+            "reg": "Рег. № 1903550009364",
+
+
+
+
+        },
+
+        {
+            "image": "img/belka.svg",
+            "loan": "Займ 0% для новых клиентов",
+            "min": 1000,
+            "max": 30000,
+            "bet": "от 0%",
+            "time": "от 7 до 30 дн.",
+            "reg": "Рег. № 001603465007766",
+
+
+
+
+        },
+
+        {
+            "image": "img/credit7.svg",
+            "loan": "Займ 0% для новых клиентов",
+            "min": 1000,
+            "max": 30000,
+            "bet": "0%",
+            "time": "от 7 до 30 дн.",
+            "reg": "Рег. № 1903475009492",
+
+
+
+
+        },
+
+        {
+            "image": "img/credit7.svg",
+            "loan": "Займ 0% для новых клиентов",
+            "min": 1000,
+            "max": 30000,
+            "bet": "0%",
+            "time": "от 7 до 30 дн.",
+            "reg": "Рег. № 1903475009492",
+
+
+
+
+        },
+
+
+    ];
+
+    outputGoods(DATA);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const rangeInputs = document.querySelectorAll('input[type="range"]')
+    const numberInput = document.querySelector('input[type="number"]')
+
+    function handleInputChange(e) {
+        let target = e.target
+        if (e.target.type !== 'range') {
+            target = document.getElementById('range')
+        }
+        const min = target.min
+        const max = target.max
+        const val = target.value
+
+        target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+
+    }
+
+    rangeInputs.forEach(input => {
+        input.addEventListener('input', handleInputChange)
+    })
+
+    numberInput.addEventListener('input', handleInputChange)
+</script>
+
+
+        </main>
+        <footer class="footer">
+
+    <div class="footer__wrap">
+        <div class="footer__top">
+            <div class="footer__container container">
+                <p class="footer__text">
+                    Сайт Банки.ру бесплатно предоставляет пользователям информацию о микрозаймах. Процентные ставки и срок погашения займа индивидуальны, зависят от выбранной организации и могут составлять от 0% до 1% в день (365% годовых), срок от 1 дня до 1825 дней.
+                </p>
+                <p class="footer__text">
+                    Пример расчета: займ 10 000 руб., срок пользования 12 недель под 0.83% в день; проценты за весь период составят 4 164.52 руб. Итого к выплате 14 164.52 рублей Администратор сайта ООО «Информационное агентство «Банки.ру». Адрес: 117638, г. Москва, улица
+                    Одесская, д. 2, этаж 19 </p>
+                <p class="footer__text">
+                    Все предложения, отображенные на данной странице, являются лучшими или выгодными исключительно по мнению экспертов Банки.ру
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer__bottom">
+
+            <div class="footer__container container">
+                <div class="footer__inn">
+                    <div class="footer__left">
+                        <div class="footer__copy">
+                            © 2005—2023 ООО ИА «Банки.ру».
+                        </div>
+                        <div class="footer__policy">
+                            Политика обработки персональных данных
+                        </div>
+
+                    </div>
+                    <div class="footer__right">
+
+                        <div class="footer__icons">
+                            <a href="" class="footer__icon">
+                                <i class="icon icon--dzen"></i>
+                            </a>
+                            <a href="" class="footer__icon">
+                                <i class="icon icon--twitter"></i>
+                            </a>
+                            <a href="" class="footer__icon">
+                                <i class="icon icon--vk"></i>
+                            </a>
+                            <a href="" class="footer__icon">
+                                <i class="icon icon--telegram"></i>
+                            </a>
+                            <a href="" class="footer__icon">
+                                <i class="icon icon--ok"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</footer>
+    </div>
+
+
+
+
+
+
+
+    <script src="js/script.min.js"></script>
+
+
+
+
+
+</body>
+
+
+</html>
